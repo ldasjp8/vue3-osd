@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import OpenSeadragon from 'openseadragon'
 import axios from 'axios'
+
+const title = ref<string>("")
+const attribution = ref<string>("")
 
 const props = withDefaults(
   defineProps<{
@@ -17,13 +20,15 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
-  (event: any, page: number): void
+  (action: string, page: number): void
 }>()
 
 onMounted(async () => {
-  const tileSources: any[] = []
+  const tileSources: string[] = []
 
   const { data } = await axios.get(props.manifest)
+  title.value = data.label
+  attribution.value = data.attribution
 
   const canvases = data.sequences[0].canvases
   for (const canvas of canvases) {
@@ -44,8 +49,10 @@ onMounted(async () => {
 </script>
 
 <template>
+  <p>Title: <b>{{title}}</b></p>
+  <p>Attribution: <b>{{attribution}}</b></p>
   <div
     id="openseadragon"
-    :style="`height: ${height}px; width: ${width};`"
+    :style="`height: ${height}px; width: ${width}; background-color: black;`"
   ></div>
 </template>
