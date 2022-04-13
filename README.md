@@ -9,7 +9,7 @@ OpenSeadragonのVue3での実装例
 ## Get started
 
 ```sh
-cd vue3-sample
+cd vue3-osd
 npm install
 npm run dev
 ```
