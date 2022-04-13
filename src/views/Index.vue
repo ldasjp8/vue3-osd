@@ -10,7 +10,7 @@ const updatePage = (value: number) => {
 </script>
 
 <template>
-  {{ page }}
+  <p>Page: {{ page }}</p>
   <Osd
     @page="updatePage"
     manifest="https://www.dl.ndl.go.jp/api/iiif/8929985/manifest.json"

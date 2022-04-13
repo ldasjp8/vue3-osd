@@ -33,6 +33,7 @@ onMounted(async () => {
   const viewer = OpenSeadragon({
     sequenceMode: true,
     id: 'openseadragon',
+    prefixUrl: "./images/",
     tileSources
   })
 
